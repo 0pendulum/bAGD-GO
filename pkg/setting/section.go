@@ -22,6 +22,11 @@ type DatabaseSettings struct {
 	MaxOpenConns int
 }
 
+type CrawlerSettings struct {
+	UserAgent          string
+	JingDongCommentUrl string
+}
+
 func (s *Setting) ReadSection(k string, v interface{}) error {
 	err := s.vp.UnmarshalKey(k, v)
 	if err != nil {

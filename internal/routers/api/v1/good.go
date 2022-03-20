@@ -10,7 +10,22 @@ func Pong(c *gin.Context) {
 	c.JSON(200, gin.H{})
 }
 
-func Create(ctx *gin.Context) {
+// @Summary 新增商品
+// @Produce json
+// @Param brand body string true "品牌名称" minlength(1) maxlenght(50)
+// @Param map_production body string false "产地分布图" minlength(1) maxlenght(100)
+// @Param map_Ingredient body string false "配料比例图"
+// @Param map_trends body string false "品牌销量趋势图"
+// @Param energy body int false "能量值"
+// @Param protein body int false "蛋白质"
+// @Param fat body int false "脂肪"
+//@Param carbohydrates body int false "碳水化合物"
+// @param minerals body int false "矿物质"
+// @Param other body int false "其他"
+// @Success 200 {object} model.Good "成功"
+// @Failure 400 "请求错误"
+// @Router /api/v1/good [post]
+func CreateGood(ctx *gin.Context) {
 	param := service.CreateGoodRequest{}
 	svc := service.New(ctx.Request.Context())
 	if err := ctx.ShouldBind(&param); err == nil {
@@ -40,7 +55,7 @@ func GetGood(ctx *gin.Context) {
 	}
 }
 
-func Update(ctx *gin.Context) {
+func UpdateGood(ctx *gin.Context) {
 	param := service.UpdateGoodRequest{}
 	svc := service.New(ctx.Request.Context())
 	if err := ctx.ShouldBind(&param); err == nil {
@@ -54,7 +69,7 @@ func Update(ctx *gin.Context) {
 	}
 }
 
-func Delete(ctx *gin.Context) {
+func DeleteGood(ctx *gin.Context) {
 	param := service.DeleteGoodRequest{
 		Brand: convert.StrTo(ctx.Param("brand")).String(),
 	}

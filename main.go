@@ -20,6 +20,10 @@ func init() {
 	}
 }
 
+// @title 基于AR的商品信息展示系统
+// @version 1.0
+// @description 基于AR的商品信息展示系统
+// @termsOfService https://github.com/0pendulum/bAGD-GO
 func main() {
 	gin.SetMode(global.ServerSetting.RunMode)
 	router := routers.NewRouter()
@@ -46,6 +50,11 @@ func setupSetting() interface{} {
 		return err
 	}
 	err = s.ReadSection("Database", &global.DatabaseSetting)
+	if err != nil {
+		return err
+	}
+
+	err = s.ReadSection("Crawler", &global.CrawlerSetting)
 	if err != nil {
 		return err
 	}
